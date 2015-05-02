@@ -112,6 +112,8 @@ body {
     padding: 0;
     font-family: 'xOpenSansLight';
     font-size: 1.3em;
+    box-shadow: 3px 3px 5px 0px rgba(110,110,110,1);
+    border-radius: 3px;
 }
 
 .note-title {
@@ -121,6 +123,9 @@ body {
     font-size: 1.4em;
     overflow: hidden;
     display: block;
+    border-bottom: 1px solid;
+    cursor: move;
+    padding-left: 36px;
 }
 
 .note-body {
@@ -129,17 +134,62 @@ body {
     overflow: wrap;
 }
 
-.note.note-yellow {
+.note-resize-grip {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    display: block;
+    background-image: url('../images/resize.gif');
+    background-size: 24px;
+    bottom: 0;
+    right: 0;
+    margin: 3px;
+    margin-right: 1px;
+    opacity: 0.1;
+}
+
+.note-resize-grip:hover {
+    opacity: 0.4;
+    cursor: se-resize;
+}
+
+.note.note-yellow, .note.note-yellow .note-title {
   background-color: #FCFFD7;
   border-color: yellow yellow;
 }
 
-.note.note-green {
+.note.note-yellow .note-title {
+    background: url('../images/pin_yellow.png');
+    background-size: 42px;
+
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+.note.note-green, .note.note-green .note-title {
   background-color: #E4FFA2;
   border-color: #87D500 #87D500;
 }
 
-.note.note-red {
+.note.note-green .note-title {
+    background: url('../images/pin_green.png');
+    background-size: 42px;
+
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+.note.note-red, .note.note-red .note-title {
   background-color: #FFE1B3;
   border-color: #FFA732 #FFA732;
 }
+
+.note.note-red .note-title {
+    background: url('../images/pin_red.png');
+    background-size: 42px;
+
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+
