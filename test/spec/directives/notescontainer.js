@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: notesContainer', function () {
+xdescribe('Directive: notesContainer', function () {
 
   // load the directive's module
   beforeEach(module('notesApp'));

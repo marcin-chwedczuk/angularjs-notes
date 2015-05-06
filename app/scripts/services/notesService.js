@@ -15,7 +15,8 @@
             deleteNote: deleteNote,
             getAllNotes: getAllNotes,
 
-            bringNoteToFront: bringNoteToFront
+            bringNoteToFront: bringNoteToFront,
+            getNoteByPoint: getNoteByPoint
         };
 
         function reset() {
@@ -101,6 +102,18 @@
             else {
                 return notes[noteIndex];
             }
+        }
+
+        function getNoteByPoint(x, y) {
+            var note = null;
+
+            for (var i = 0; i < notes.length; i += 1) {
+                if (notes[i].containsPoint(x, y) && (!note || (notes[i].zIndex >= note.zIndex))) {
+                    note = notes[i];
+                }
+            }
+
+            return note;
         }
     }
 

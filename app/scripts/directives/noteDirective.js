@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    function noteDirective(utils, $log, DragNoteService) {
+    function noteDirective(utils, $log) {
         return {
           require: 'ngModel',
 
@@ -11,7 +11,8 @@
           link: postLink,
           scope: {
             onTitleMouseDown: '&',
-            onNoteClicked: '&'
+            onNoteClicked: '&',
+            onResizeGripMouseDown: '&'
           },
         };
                   
@@ -42,10 +43,24 @@
                     scope.onNoteClicked({ id: scope.model.id });
                 }
             };
+
+            scope._onResizeGripMouseDown = function($event) {
+                $log.debug('RESIZE GRIP CLICKED!');
+                $event.preventDefault();
+               
+                var x = $event.pageX;
+                var y = $event.pageY;
+
+                $log.debug('resize grip clicked (x: ' + x + ', y: ' + y + ')');
+                
+                if (scope.onResizeGripMouseDown) {
+                    scope.onResizeGripMouseDown({ x:x, y:y });
+                }
+            };
         }
     }
 
-    noteDirective.$inject = ['utils', '$log', 'DragNoteService'];
+    noteDirective.$inject = ['utils', '$log'];
 
     angular
         .module('notesApp')

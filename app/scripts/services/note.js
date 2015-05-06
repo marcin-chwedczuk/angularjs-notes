@@ -51,6 +51,11 @@
         return this;
     };
 
+    Note.prototype.setSize = function(width, height) {
+        this.width = Math.max(1, width);
+        this.height = Math.max(1, height);
+    };
+
     var COLORS = ['yellow', 'green', 'red'];
     function randomColor() {
         var r = Math.floor(Math.random() * COLORS.length);

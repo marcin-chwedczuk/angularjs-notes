@@ -5,20 +5,20 @@
         var MODE_NORMAL = 'NORMAL',
             MODE_DRAG = 'DRAG';
 
-        var mode, dragInfo, containerInfo;
+        var mode, dragInfo;
 
         reset();
 
         return {
             reset: reset,
-            setcontainerInfoSize: setcontainerInfoSize,
 
-            // coords are relative to containerInfo
             pointerDown: pointerDown,
             pointerUp: pointerUp,
             pointerMove: pointerMove,
 
-            pointerLeave: pointerLeave
+            pointerLeave: pointerLeave,
+
+            isDraggingNote: isDraggingNote
         };
 
         function reset() {
@@ -29,37 +29,14 @@
                 mousex: 0, mousey: 0,
                 top: 0, left: 0
             };
-
-            containerInfo = {
-                top: 0, left: 0,
-                width: 0, height: 0,
-                bottom: 0, right: 0
-            };
-        }
-
-        function setcontainerInfoSize(top, left, width, height) {
-            var isN = angular.isNumber.bind(angular);
-
-            if (!isN(top) || !isN(left) || !isN(width) || !isN(height)) {
-                throw new TypeError('Contaner dimensions must be numbers.');
-            }
-
-            containerInfo = { 
-                top: top,
-                left: left,
-                width: width,
-                height: height,
-                bottom: (top + height),
-                right: (left + width)
-            };
         }
 
         function pointerDown(x, y) {
-            if (mode === MODE_DRAG) {
+            if (isDraggingNote()) {
                 return;
             }
 
-            var note = getNoteByPoint(x, y);
+            var note = NotesService.getNoteByPoint(x, y);
             if (note) {
                 NotesService.bringNoteToFront(note);
 
@@ -75,7 +52,7 @@
         }
 
         function pointerUp(x, y) {
-            if (mode !== MODE_DRAG) {
+            if (!isDraggingNote()) {
                 return;
             }
 
@@ -88,7 +65,7 @@
         }
 
         function pointerMove(x, y) {
-            if (mode === MODE_DRAG) {
+            if (isDraggingNote()) {
                 updateNotePosition(x, y);
                 $log.debug('x:', x, ' y:', y);
             }
@@ -105,17 +82,8 @@
             dragInfo = null;
         }
 
-        function getNoteByPoint(x, y) {
-            var notes = NotesService.getAllNotes();
-            var note = null;
-
-            for (var i = 0; i < notes.length; i += 1) {
-                if (notes[i].containsPoint(x, y) && (!note || (notes[i].zIndex >= note.zIndex))) {
-                    note = notes[i];
-                }
-            }
-
-            return note;
+        function isDraggingNote() {
+            return (mode === MODE_DRAG);
         }
     }
 
