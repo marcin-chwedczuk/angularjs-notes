@@ -3,12 +3,19 @@
     ng-click="_onNoteClicked($event)">
 
     <div class="note-title"
-        ng-mousedown="_onTitleMouseDown($event)">
-         {{model.title}} 
+        ng-mousedown="_onTitleMouseDown($event)"
+        ng-dblclick="_onTitleDoubleClick($event)">
+        
+        <div contenteditable="{{isTitleEditable}}"
+            ng-class="{ 'note-title-editable':isTitleEditable }"
+            ng-mousedown="_onEditableTitleMouseDown($event)">
+            {{model.title}}
+        </div>
     </div>
      
-    <div class="note-body"
-        >
+    <div contenteditable="{{isBodyEditable}}" 
+        class="note-body"
+        ng-class="{ 'note-body-editable':isBodyEditable }">
         {{model.body}}
     </div>
 

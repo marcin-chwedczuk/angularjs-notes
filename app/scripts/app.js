@@ -10,7 +10,8 @@ angular
         'ngSanitize',
         'ngTouch'
     ])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', 
+    function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -30,4 +31,4 @@ angular
                 controller: 'AboutController',
                 controllerAs: 'vm'
             });
-    });
+    }]);
