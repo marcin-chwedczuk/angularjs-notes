@@ -2,21 +2,12 @@
     ng-style="{ left:model.left, top:model.top, 'z-index':model.zIndex, width:model.width, height:model.height }"
     ng-click="_onNoteClicked($event)">
 
-    <div class="note-title"
-        ng-mousedown="_onTitleMouseDown($event)"
-        ng-dblclick="_onTitleDoubleClick($event)">
-        
-        <div contenteditable="{{isTitleEditable}}"
-            ng-class="{ 'note-title-editable':isTitleEditable }"
-            ng-mousedown="_onEditableTitleMouseDown($event)">
-            {{model.title}}
-        </div>
+    <div class="note-title" ng-mousedown="_onTitleMouseDown($event)">
+        <editable ng-model="model.title" trigger="dblclick"></editable>
     </div>
      
-    <div contenteditable="{{isBodyEditable}}" 
-        class="note-body"
-        ng-class="{ 'note-body-editable':isBodyEditable }">
-        {{model.body}}
+    <div class="note-body">
+        <editable ng-model="model.body" trigger="click"></editable>
     </div>
 
     <div class="note-resize-grip"

@@ -1,0 +1,6 @@
+<div contenteditable="{{model.isEdited}}"
+    ng-dblclick="_onDoubleClick($event)"
+    ng-click="_onClick($event)"
+    ng-mousedown="_onMouseDown($event)"
+    ng-bind-html="model.content">
+</div>

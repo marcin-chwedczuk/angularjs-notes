@@ -128,6 +128,10 @@ body {
     padding-left: 36px;
 }
 
+.note-title-editable {
+    cursor: text;
+}
+
 .note-body {
     padding: 4px;
     padding-top: 2px;
