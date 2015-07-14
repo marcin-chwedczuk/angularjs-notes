@@ -11,7 +11,8 @@
             link: postLink,
 
             scope: {
-                trigger: '@trigger'
+                trigger: '@trigger',
+                exitOn: '@exitOn'
             }
         };
 
@@ -97,6 +98,20 @@
                     updateModel();
                 }
             });
+
+            element.on('keydown', function($event) {
+                var keyName = 
+                    $event.keyCode === 13 ? 'enter' :
+                    $event.keyCode === 27 ? 'escape' :
+                                            'other';
+                
+                if ((scope.exitOn || '').indexOf(keyName) !== -1) {
+                    $event.preventDefault();
+                    disableEdition();
+                    updateModel();
+                }
+            });
+
         }
     }
 

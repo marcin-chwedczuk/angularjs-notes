@@ -3,11 +3,13 @@
     ng-click="_onNoteClicked($event)">
 
     <div class="note-title" ng-mousedown="_onTitleMouseDown($event)">
-        <editable ng-model="model.title" trigger="dblclick"></editable>
+        <editable ng-model="model.title" trigger="dblclick" 
+            exit-on="escape"></editable>
     </div>
      
     <div class="note-body">
-        <editable ng-model="model.body" trigger="click"></editable>
+        <editable ng-model="model.body" trigger="click"
+            exit-on="escape"></editable>
     </div>
 
     <div class="note-resize-grip"

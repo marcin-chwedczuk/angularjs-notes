@@ -19,9 +19,6 @@
         function postLink(scope, element, attrs, ngModelController) {
             utils.unused(element, attrs);
 
-            var titleElement = element.find('.note-title');
-            var bodyElement = element.find('.note-body');
-
             ngModelController.$render = function() {
                 var $viewValue = ngModelController.$viewValue;
                 scope.model = $viewValue;

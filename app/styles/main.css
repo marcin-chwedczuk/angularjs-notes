@@ -126,16 +126,23 @@ body {
     border-bottom: 1px solid;
     cursor: move;
     padding-left: 36px;
-}
-
-.note-title-editable {
-    cursor: text;
+    min-height: 48px;
 }
 
 .note-body {
     padding: 4px;
     padding-top: 2px;
     overflow: wrap;
+}
+
+.note-title [contenteditable="true"], .note-body [contenteditable="true"] {
+    cursor: text;
+    outline: none;
+}
+
+.note-title [contenteditable] {
+    width: 100%;
+    min-height: 40px;
 }
 
 .note-resize-grip {
