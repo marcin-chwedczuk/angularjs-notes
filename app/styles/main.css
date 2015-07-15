@@ -135,8 +135,12 @@ body {
     overflow: wrap;
 }
 
-.note-title [contenteditable="true"], .note-body [contenteditable="true"] {
+[contenteditable="true"] {
     cursor: text;
+    outline: none;
+}
+
+[contenteditable]:focus {
     outline: none;
 }
 
