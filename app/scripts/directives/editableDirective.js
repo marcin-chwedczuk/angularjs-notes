@@ -17,6 +17,8 @@
         };
 
         function postLink(scope, element, attrs, ngModelController) {
+            var contentEditable = element.find('[contenteditable]');
+
             scope.model = {
                 content: '',
                 isEdited: false 
@@ -39,7 +41,7 @@
                 scope.model.isEdited = true;
 
                 $timeout(function() {
-                    element.trigger('focus');
+                    contentEditable.trigger('focus');
                     SelectionUtils.selectRange(caret);
                 });
             };
@@ -49,7 +51,7 @@
             };
 
             var updateModel = function() {
-                var content = element.find('[contenteditable]').html();
+                var content = contentEditable.html();
                 ngModelController.$setViewValue(content);
 
                 $log.log('editable: updateModel to ' + content);
