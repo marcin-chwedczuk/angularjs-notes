@@ -14,15 +14,15 @@
         };
 
         function postLink(scope, element, attrs, ngModelController) {
-            utils.unused(element, attrs);
+            utils.unused(attrs);
 
             ngModelController.$render = function() {
                 scope.notes = ngModelController.$viewValue;
             };
 
-            scope.onNoteTitleMouseDown = function(x, y) {
+            scope.onNoteTitleMouseDown = function(pageX, pageY) {
                 if (!ResizeService.isResizingNote()) {
-                    callWithContainerOffset(DragNoteService.pointerDown, x, y);
+                    callWithContainerOffset(DragNoteService.pointerDown, pageX, pageY);
                 }
             };
 
@@ -30,14 +30,17 @@
                 NotesService.bringNoteToFront(noteId);
             };
 
-            scope.onNoteResizeGripMouseDown = function(x, y) {
+            scope.onNoteResizeGripMouseDown = function(pageX, pageY) {
                 if (!DragNoteService.isDraggingNote()) {
-                    callWithContainerOffset(ResizeService.pointerDown, x, y);
+                    callWithContainerOffset(ResizeService.pointerDown, pageX, pageY);
                 }
             };
 
-            var notesContainer = element.find('.notes-container');
+            scope.onNoteClosed = function(noteId) { 
+                NotesService.deleteNote(noteId);
+            };
 
+            var notesContainer = element.find('.notes-container');
 
             ContainerInfo.updateContainerStart(0, 0);
             updateContainerSize();

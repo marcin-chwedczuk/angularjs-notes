@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    function noteDirective(utils, SelectionUtils, $timeout, $log) {
+    function noteDirective(utils) {
         return {
           require: 'ngModel',
 
@@ -9,10 +9,12 @@
           
           restrict: 'E',
           link: postLink,
+
           scope: {
             onTitleMouseDown: '&',
-            onNoteClicked: '&',
-            onResizeGripMouseDown: '&'
+            onResizeGripMouseDown: '&',
+            onClicked: '&',
+            onClosed: '&'
           },
         };
                   
@@ -30,37 +32,37 @@
                 var x = $event.pageX;
                 var y = $event.pageY;
 
-                $log.debug('note title click (x: ' + x + ', y: ' + y + ')');
-
                 if (scope.onTitleMouseDown) {
-                    scope.onTitleMouseDown({ x:x, y:y });
+                    scope.onTitleMouseDown({ pageX: x, pageY: y });
                 }
             };
 
-            scope._onNoteClicked = function() {
-                $log.debug('NOTE CLICKED!');
-                if (scope.onNoteClicked) {
-                    scope.onNoteClicked({ id: scope.model.id });
+            scope._onClicked = function() {
+                if (scope.onClicked) {
+                    scope.onClicked({ id: scope.model.id });
                 }
             };
 
             scope._onResizeGripMouseDown = function($event) {
-                $log.debug('RESIZE GRIP CLICKED!');
                 $event.preventDefault();
                
                 var x = $event.pageX;
                 var y = $event.pageY;
-
-                $log.debug('resize grip clicked (x: ' + x + ', y: ' + y + ')');
                 
                 if (scope.onResizeGripMouseDown) {
-                    scope.onResizeGripMouseDown({ x:x, y:y });
+                    scope.onResizeGripMouseDown({ pageX: x, pageY: y });
+                }
+            };
+
+            scope._onCloseButtonClick = function() {
+                if (scope.onClosed) {
+                    scope.onClosed({ id: scope.model.id });
                 }
             };
         }
     }
 
-    noteDirective.$inject = ['utils', 'SelectionUtils', '$timeout', '$log'];
+    noteDirective.$inject = ['utils'];
 
     angular
         .module('notesApp')

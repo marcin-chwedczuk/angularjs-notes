@@ -207,4 +207,10 @@ body {
     background-repeat: no-repeat;
 }
 
+.note-close-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 9999;
+}
 

@@ -1,19 +1,17 @@
 (function() {
     'use strict';
 
-    function NotesController(NotesService, $window) {
+    function NotesController($scope, NotesService, $window) {
         var vm = this;
 
-        NotesService.createNote();
-        $window.notes = vm.notes = NotesService.getAllNotes();
+        vm.NotesService = NotesService;
 
         vm.addNote = function() {
             NotesService.createNote();
-            vm.notes = NotesService.getAllNotes();
         };
     }
 
-    NotesController.$inject = ['NotesService', '$window'];
+    NotesController.$inject = ['$scope', 'NotesService', '$window'];
 
     angular
         .module('notesApp')

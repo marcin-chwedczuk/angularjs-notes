@@ -9,11 +9,12 @@
         reset();
 
         return {
+            get notes() { return notes; },
+
             reset: reset,
 
             createNote: createNote,
             deleteNote: deleteNote,
-            getAllNotes: getAllNotes,
 
             bringNoteToFront: bringNoteToFront,
             getNoteByPoint: getNoteByPoint
@@ -75,10 +76,6 @@
             for (var i = 0; i < notes.length; i += 1) {
                 notes[i].setZIndex(i + 1);
             }
-        }
-
-        function getAllNotes() {
-            return notes.slice();
         }
 
         function getNoteIndex(noteOrId) {

@@ -5,6 +5,10 @@
     <div class="note-title" ng-mousedown="_onTitleMouseDown($event)">
         <editable ng-model="model.title" trigger="dblclick" 
             exit-on="escape"></editable>
+    
+        <div class="note-close-button" ng-click="_onCloseButtonClick($event)">
+            <span class="close">&times;</span>
+        </div>
     </div>
      
     <div class="note-body">

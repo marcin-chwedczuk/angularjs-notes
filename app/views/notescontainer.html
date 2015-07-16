@@ -1,9 +1,10 @@
 <div class="notes-container">
     <div ng-repeat="note in notes">
         <note ng-model="note" 
-            on-title-mouse-down="onNoteTitleMouseDown(x, y)"
-            on-note-clicked="onNoteClicked(id)"
-            on-resize-grip-mouse-down="onNoteResizeGripMouseDown(x, y)">
+            on-title-mouse-down="onNoteTitleMouseDown(pageX, pageY)"
+            on-resize-grip-mouse-down="onNoteResizeGripMouseDown(pageX, pageY)"
+            on-clicked="onNoteClicked(id)"
+            on-closed="onNoteClosed(id)">
         </note>
     </div>
 </div>
