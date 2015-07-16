@@ -1,6 +1,6 @@
 <div class="note note-{{model.color}}"
     ng-style="{ left:model.left, top:model.top, 'z-index':model.zIndex, width:model.width, height:model.height }"
-    ng-click="_onNoteClicked($event)">
+    ng-click="_onClicked($event)">
 
     <div class="note-title" ng-mousedown="_onTitleMouseDown($event)">
         <editable ng-model="model.title" trigger="dblclick" 

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function NotesService(Note) {
+    function NotesService(Note, StorageService) {
         var NOT_FOUND = (-1);
 
         var nextId, notes;
@@ -17,7 +17,10 @@
             deleteNote: deleteNote,
 
             bringNoteToFront: bringNoteToFront,
-            getNoteByPoint: getNoteByPoint
+            getNoteByPoint: getNoteByPoint,
+
+            loadNotes: loadNotes,
+            saveNotes: saveNotes
         };
 
         function reset() {
@@ -112,9 +115,20 @@
 
             return note;
         }
+
+        function loadNotes() {
+            notes = StorageService.loadNotes();
+
+            nextId = Math.max.apply(null, notes.map(function(n) { return n.id; }));
+            nextId++;
+        }
+
+        function saveNotes() {
+            StorageService.saveNotes(notes);
+        }
     }
 
-    NotesService.$inject = ['Note'];
+    NotesService.$inject = ['Note', 'StorageService'];
 
     angular
         .module('notesApp')

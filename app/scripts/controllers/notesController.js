@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function NotesController($scope, NotesService, $window) {
+    function NotesController($scope, NotesService) {
         var vm = this;
 
         vm.NotesService = NotesService;
@@ -11,7 +11,7 @@
         };
     }
 
-    NotesController.$inject = ['$scope', 'NotesService', '$window'];
+    NotesController.$inject = ['$scope', 'NotesService'];
 
     angular
         .module('notesApp')

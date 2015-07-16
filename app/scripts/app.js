@@ -31,4 +31,11 @@ angular
                 controller: 'AboutController',
                 controllerAs: 'vm'
             });
+    }])
+    .run(['$rootScope', 'NotesService', function($rootScope, NotesService) {
+        NotesService.loadNotes();
+
+        $rootScope.$on('$locationChangeStart', function(event) {
+            NotesService.saveNotes();
+        });
     }]);
