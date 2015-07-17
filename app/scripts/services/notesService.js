@@ -10,6 +10,7 @@
 
         return {
             get notes() { return notes; },
+            get frontNote() { return this.getFrontNote(); },
 
             reset: reset,
 
@@ -18,6 +19,8 @@
 
             bringNoteToFront: bringNoteToFront,
             getNoteByPoint: getNoteByPoint,
+
+            getFrontNote: getFrontNote,
 
             loadNotes: loadNotes,
             saveNotes: saveNotes
@@ -62,13 +65,33 @@
         }
 
         function getMaxZIndex() {
-            var maxZIndex = (-1);
+            var note = getNoteWithMaxZIndex();
+
+            if (note == null) {
+                return (-1);
+            }
+            else {
+                return note.zIndex;
+            }
+        }
+
+        function getNoteWithMaxZIndex() {
+             var maxZIndex = (-1), 
+                 maxZIndexNote = null;
 
             for (var i = 0; i < notes.length; i += 1) {
-                maxZIndex = Math.max(maxZIndex, notes[i].zIndex);
+                if (notes[i].zIndex > maxZIndex) {
+                    maxZIndexNote = notes[i];
+                    maxZIndex = notes[i].zIndex;
+                }
             }
 
-            return maxZIndex;
+            return maxZIndexNote;
+        
+        }
+
+        function getFrontNote() {
+            return getNoteWithMaxZIndex();
         }
 
         function recomputeZIndexes() {

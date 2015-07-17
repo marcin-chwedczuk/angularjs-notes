@@ -7,6 +7,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -14,9 +15,6 @@
     <!-- endbuild -->
   </head>
   <body ng-app="notesApp" ng-strict-di>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
     <div class="navbar navbar-fixed-top navbar-inverse"> 
         <div class="container-fluid">
@@ -35,10 +33,11 @@
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a ui-sref="notes">Notes</a></li>
-              <li><a ui-sref="about">About</a></li>
-            </ul>
+              <div ui-view="navbar"></div>
+              <ul class="nav navbar-nav">
+                  <li class="active"><a ui-sref="notes">Notes</a></li>
+                  <li><a ui-sref="about">About</a></li>
+              </ul>
           </div>
 
         </div>
@@ -77,6 +76,7 @@
         <script src="scripts/directives/editableDirective.js"></script>
         <script src="scripts/services/documentEventsBroadcaster.js"></script>
         <script src="scripts/services/storageService.js"></script>
+        <script src="scripts/controllers/notesNavbarController.js"></script>
         <!-- endbuild -->
 </body>
 </html>

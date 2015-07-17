@@ -219,3 +219,23 @@ body {
     z-index: 9999;
 }
 
+.color-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #9d9d9d;
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+.color-box-yellow {
+  background-color: rgb(255, 255, 110);
+}
+
+.color-box-green {
+  background-color: #D6FD75;
+}
+
+.color-box-red {
+  background-color: #FFCC7D;
+}
+

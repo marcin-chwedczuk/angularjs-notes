@@ -18,18 +18,35 @@ angular
             .state('notes', {
                 url: '/',
 
-                templateUrl: 'views/notes.html',
+                views: {
+                    '': {
+                        templateUrl: 'views/notes.html',
                 
-                controller: 'NotesController',
-                controllerAs: 'vm'
+                        controller: 'NotesController',
+                        controllerAs: 'vm'
+                    },
+
+                    'navbar': {
+                        templateUrl: 'views/notesNavbar.html',
+
+                        controller: 'NotesNavbarController',
+                        controllerAs: 'vm'
+                    }
+                }
             })
             .state('about', {
                 url: '/about',
 
-                templateUrl: 'views/about.html',
+                views: {
+                    '': {
+                        templateUrl: 'views/about.html',
 
-                controller: 'AboutController',
-                controllerAs: 'vm'
+                        controller: 'AboutController',
+                        controllerAs: 'vm'
+                    },
+
+                    'navbar': { }
+                }
             });
     }])
     .run(['$rootScope', '$window', 'NotesService', 

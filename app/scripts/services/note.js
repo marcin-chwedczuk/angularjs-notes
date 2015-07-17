@@ -56,11 +56,19 @@
         this.height = Math.max(1, height);
     };
 
-    var COLORS = ['yellow', 'green', 'red'];
+    var COLORS = Note.COLORS = ['yellow', 'green', 'red'];
+
     function randomColor() {
         var r = Math.floor(Math.random() * COLORS.length);
         return COLORS[r];
     }
+
+    Note.prototype.setColor = function(color) {
+        if (!color || COLORS.indexOf(color) === (-1))
+            throw new Error('Unknown color: ' + color);
+
+        this.color = color;
+    };
 
     function garbage(maxWords) {
         var words = ['foo', 'bar', 'nyu', 'totally', 'sell', 'profit', 'money'];
