@@ -133,6 +133,7 @@ body {
     padding: 4px;
     padding-top: 2px;
     overflow: wrap;
+    height: calc(100% - 50px);
 }
 
 [contenteditable="true"] {
@@ -147,6 +148,10 @@ body {
 .note-title [contenteditable] {
     width: 100%;
     min-height: 40px;
+}
+
+.note-body [contenteditable] {
+    height: 100%;
 }
 
 .note-resize-grip {

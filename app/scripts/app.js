@@ -32,10 +32,17 @@ angular
                 controllerAs: 'vm'
             });
     }])
-    .run(['$rootScope', 'NotesService', function($rootScope, NotesService) {
+    .run(['$rootScope', '$window', 'NotesService', 
+    function($rootScope, $window, NotesService) {
         NotesService.loadNotes();
 
-        $rootScope.$on('$locationChangeStart', function(event) {
+        $rootScope.$on('$locationChangeStart', function() {
             NotesService.saveNotes();
+        });
+
+        $window.addEventListener('beforeunload', function() {
+            $rootScope.$apply(function() {
+                NotesService.saveNotes();
+            });
         });
     }]);
